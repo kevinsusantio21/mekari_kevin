@@ -127,10 +127,7 @@ FROM
     SELECT 
         t.employee_id,
         e.branch_id,
-        CASE WHEN t.employee_id = '218078'
-            THEN 13000000
-            ELSE e.salary
-        END AS salary,
+        e.salary,
         LEFT(t.date, 4) AS year,
         SUBSTRING(t.date, 6, 2) AS month,
         SUM(TIME_TO_SEC(IFNULL(t.checkout, '17:00:00')) - TIME_TO_SEC(IFNULL(t.checkin, '09:00:00')))/3600.0 AS hours_worked,
@@ -138,6 +135,9 @@ FROM
     FROM timesheets t
     INNER JOIN employees e
     ON t.employee_id = e.employe_id
+    AND CASE WHEN t.employee_id = '218078'
+		THEN e.salary = 13000000
+	ELSE e.salary END
     GROUP BY t.employee_id, e.branch_id, year, month, e.salary
 ) r
 GROUP BY r.branch_id, r.year, r.month
@@ -153,10 +153,9 @@ Check-in: 9 am
 Check-out: 5 pm
 Assuming that the working hour is 9 to 5
 ```
-CASE WHEN t.employee_id = '218078'
-    THEN 13000000
-    ELSE e.salary
-END AS salary, 
+AND CASE WHEN t.employee_id = '218078'
+		THEN e.salary = 13000000
+	ELSE e.salary END
 ```
 When analyzing the employee data, I found that employee_id 218078 has 2 records with 2 different salary: 13.000.000 and 10.500.000.
 
