@@ -165,7 +165,10 @@ To improve the data accuracy, I assumed that the current salary is 13.000.000
 You can customize this query to suit your data analysis needs.
 
 **Inserting the Query Result to table destination**
-This section was added after I replied the recruiter. Please add `insert into` syntax for inserting the query result to the table table. Assuming the destination table name is `datamart`, so the query will be:
+
+This section was added after I replied the recruitment email. 
+
+Please add `insert into` syntax for inserting the query result to the table table. Assuming the destination table name is `datamart`, so the query will be:
 ```
 INSERT INTO datamart
 <query>
