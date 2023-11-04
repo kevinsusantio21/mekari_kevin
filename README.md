@@ -13,9 +13,9 @@ sql_file.sql is the SQL query used for find the salary per hour of every branch_
 - [Getting Started](#getting-started)
 - [Data Sources](#data-sources)
 - [Configuration](#configuration)
-- [Transformations](#transformations)
-- [Loading Data](#loading-data)
-- [Append Data](#append-data)
+- [Extract](#extract)
+- [Transform](#transform)
+- [Load](#load)
 - [Salary Per Hour Analysis](#salary-per-hour-analysis)
 
 ## Introduction
@@ -75,20 +75,43 @@ mysql_config = {
 
 Replace "your_username", "your_password", "your_host", and "your_database" with your MySQL database credentials.
 
-## Transformations
-The script performs the following transformations on the timesheets data:
+## Extract
+**Extracting the csv into pandas dataframe**
+```
+# Extract employees csv to pandas dataframe
+pd_df_employees = pd.read_csv("employees.csv")
 
-Converts the "checkin" and "checkout" columns to HH:mm:ss format.
+# Extract timesheets csv to pandas dataframe
+pd_df_timesheets = pd.read_csv("timesheets.csv")
+```
 
-## Loading Data
-The script loads the transformed data into the following tables in the MySQL database:
+## Transform
+**Transforming the checkin and checkout columns**
+```
+# Transform checkin checkout column to HH:mm:ss format
+pd_df_timesheets["checkin"] = pd.to_datetime(pd_df_timesheets["checkin"]).dt.strftime("%H:%M:%S")
+pd_df_timesheets["checkout"] = pd.to_datetime(pd_df_timesheets["checkout"]).dt.strftime("%H:%M:%S")
+```
 
-**employees**: Contains employee data.
+## Load
+**Load Pandas Dataframe to MySQL Table**
+```
+# Load employees dataframe to table employees
+pd_df_employees.to_sql(
+    name="employees",
+    con=engine,
+    if_exists="append",
+    index=False,
+)
 
-**timesheets**: Contains timesheet data.
-
-## Append Data
-By default, the script appends data to the existing tables in the MySQL database. If the tables do not exist, they will be created. If you want to perform other actions, you can modify the if_exists parameter in the to_sql method in the script.
+# Load timesheets dataframe to table timesheets
+pd_df_timesheets.to_sql(
+    name="timesheets",
+    con=engine,
+    if_exists="append",
+    index=False,
+)
+```
 
 ## Salary Per Hour Analysis
 The script includes an SQL query for data analysis. The query calculates the salary_per_hour for each employee and summarizes the results by year, month, and branch. Here is the SQL query:
