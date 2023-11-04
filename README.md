@@ -166,8 +166,6 @@ You can customize this query to suit your data analysis needs.
 
 **Inserting the Query Result to table destination**
 
-This section was added after I replied the recruitment email. 
-
 Please add `TRUNCATE TABLE` syntax to delete all rows in the destination table and `INSERT INTO` syntax for inserting the query result to the destination table. Assuming the destination table name is `datamart`, so the query will be:
 ```
 TRUNCATE TABLE datamart;
