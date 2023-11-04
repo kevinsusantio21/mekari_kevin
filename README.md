@@ -173,4 +173,4 @@ Please add `insert into` syntax for inserting the query result to the table tabl
 INSERT INTO datamart
 <query>
 ```
-The "<query>" is the query above
+The "\<query\>" is the query above
