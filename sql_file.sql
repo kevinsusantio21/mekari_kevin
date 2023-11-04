@@ -1,3 +1,5 @@
+INSERT INTO datamart
+# assuming the destination table name is `datamart`
 SELECT
     r.year,
     r.month,
