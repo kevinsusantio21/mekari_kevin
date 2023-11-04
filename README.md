@@ -16,7 +16,7 @@ sql_file.sql is the SQL query used for find the salary per hour of every branch_
 - [Transformations](#transformations)
 - [Loading Data](#loading-data)
 - [Append Data](#append-data)
-- [Salary Per Hour Analysis](#salary-per hour-analysis)
+- [Salary Per Hour Analysis](#salary-per-hour-analysis)
 
 ## Introduction
 
