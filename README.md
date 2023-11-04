@@ -168,9 +168,10 @@ You can customize this query to suit your data analysis needs.
 
 This section was added after I replied the recruitment email. 
 
-Please add `insert into` syntax for inserting the query result to the table table. Assuming the destination table name is `datamart`, so the query will be:
+Please add `TRUNCATE TABLE` syntax to delete all rows in the destination table and `INSERT INTO` syntax for inserting the query result to the destination table. Assuming the destination table name is `datamart`, so the query will be:
 ```
+TRUNCATE TABLE datamart;
 INSERT INTO datamart
-<query>
+<query>;
 ```
 The "\<query\>" is the query above
