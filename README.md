@@ -20,7 +20,7 @@ sql_file.sql is the SQL query used for find the salary per hour of every branch_
 
 ## Introduction
 
-This Python script is designed to perform Extract, Transform, and Load (ETL) operations on employee and timesheet data from CSV files into a MySQL database.
+The etl.py Python script is designed to perform Extract, Transform, and Load (ETL) operations on employee and timesheet data from CSV files into a MySQL database. While the sql_file.sql is designed to find the salary_per_hour grouped by branch_id, year, and month.
 
 ## Prerequisites
 
